@@ -18,7 +18,13 @@ Simple just install go and  execute
 
 
 ### Increment version using Docker
+(remember you can only use major, minor, patch)
+run: 
+```
+sh version.sh minor
+```
 
+version.sh
 ```
 #!/usr/bin/env bash
 
