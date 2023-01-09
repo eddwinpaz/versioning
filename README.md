@@ -15,3 +15,18 @@ Simple just install go and  execute
 
 ### Want to collaborate?
 - Make a pull request
+
+
+### Increment version using Docker
+
+```
+VERSION=$(cat ./version.txt)
+echo "Current version: $VERSION"
+
+# Build the image, passing in the version number as a build argument
+PACKAGE_NAME=my-app:$version
+
+docker build -t package_name .
+
+docker push $package_name
+```
