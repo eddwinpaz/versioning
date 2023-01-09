@@ -20,13 +20,19 @@ Simple just install go and  execute
 ### Increment version using Docker
 
 ```
+#!/usr/bin/env bash
+
+./versioning $1
+
 VERSION=$(cat ./version.txt)
-echo "Current version: $VERSION"
+echo "🆚 New version: $VERSION"
 
 # Build the image, passing in the version number as a build argument
 PACKAGE_NAME=my-app:$version
 
+echo "🏗️  Building $PACKAGE_NAME"
 docker build -t package_name .
 
+echo "📍 Pushing $PACKAGE_NAME" 
 docker push $package_name
 ```
