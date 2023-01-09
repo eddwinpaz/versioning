@@ -10,5 +10,8 @@ Simple just install go and  execute
 ./versioning major
 ```
 
+### Important
+- Remember to place the version.txt at the level of the compiled versioning code.
+
 ### Want to collaborate?
 - Make a pull request
