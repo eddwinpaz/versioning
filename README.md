@@ -5,9 +5,9 @@
 Simple just install go and  execute
 
 ```
-./versioning minor
-./versioning patch
-./versioning major
+./versioning minor ./version.txt
+./versioning patch ./version.txt
+./versioning major ./version.txt
 ```
 
 ### Important
@@ -28,7 +28,7 @@ version.sh
 ```
 #!/usr/bin/env bash
 
-./versioning $1
+./versioning $1 ./version.txt
 
 VERSION=$(cat ./version.txt)
 echo "🆚 New version: $VERSION"
