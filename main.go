@@ -18,13 +18,14 @@ func main() {
 	increment_schema := os.Args[1]
 	file_path := os.Args[2]
 
-	current_version := utils.Open_file(file_path)
-	fmt.Println("Current version: ", current_version)
+	f := utils.NewFileManager(file_path)
+
+	fmt.Println("Current version: ", f.Text)
 
 	version := entity.Version{}
-	new_version := version.Increment_version(current_version, increment_schema)
+	new_version := version.Increment_version(f.Text, increment_schema)
 
 	fmt.Println("New version: ", new_version)
-
-	utils.Save_file(new_version)
+	f.Text = new_version
+	f.Save_file()
 }

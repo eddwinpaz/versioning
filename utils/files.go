@@ -6,9 +6,22 @@ import (
 	"os"
 )
 
+type FileManager struct {
+	FileName string
+	Text     string
+}
+
+func NewFileManager(filePath string) *FileManager {
+
+	f := &FileManager{}
+	f.FileName = filePath
+	f.Open_file()
+	return f
+}
+
 // Get_current_version gets the current version number from the file
-func Open_file(file_name string) string {
-	file, err := os.Open(file_name)
+func (f *FileManager) Open_file() {
+	file, err := os.Open(f.FileName)
 	if err != nil {
 		fmt.Println(err)
 		os.Exit(1)
@@ -18,14 +31,13 @@ func Open_file(file_name string) string {
 	scanner := bufio.NewScanner(file)
 	scanner.Scan()
 	version := scanner.Text()
-
-	return version
+	f.Text = version
 }
 
 // Save_file saves the updated version number to the file
-func Save_file(version string) {
+func (f *FileManager) Save_file() {
 	// Save the updated version number to the file
-	file, err := os.Create("./version.txt")
+	file, err := os.Create(f.FileName)
 
 	if err != nil {
 		fmt.Println(err)
@@ -35,7 +47,7 @@ func Save_file(version string) {
 
 	writer := bufio.NewWriter(file)
 
-	_, err = writer.WriteString(version)
+	_, err = writer.WriteString(f.Text)
 	if err != nil {
 		fmt.Println(err)
 		os.Exit(1)
